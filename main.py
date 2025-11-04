@@ -8,10 +8,10 @@ import pandas as pd
 # -----------------------------------------------------------
 st.set_page_config(page_title="Solar Estimator", page_icon="🌞", layout="centered")
 
-st.title("🌞 Solar Plant Estimator")
+st.title("🌞 Solar Estimator")
 st.caption("Estimate your solar potential, cost, and financing options in seconds!")
 
-st.divider()
+st.markdown("\n\n")
 
 # -----------------------------------------------------------
 # Consumer Data
@@ -28,14 +28,14 @@ developers_by_location = {
 
 banks_by_location = {
     "Kollam": [
-        {"Bank": "State Bank of India", "Interest Rate": "8.2%", "Tenure": "7 years"},
-        {"Bank": "HDFC Bank", "Interest Rate": "8.5%", "Tenure": "10 years"},
-        {"Bank": "Federal Bank", "Interest Rate": "8.7%", "Tenure": "8 years"},
+        {"Bank": "State Bank of India", "Interest Rate": "6.2%", "Tenure": "2 years"},
+        {"Bank": "HDFC Bank", "Interest Rate": "6.5%", "Tenure": "3 years"},
+        {"Bank": "Federal Bank", "Interest Rate": "6.7%", "Tenure": "2 years"},
     ],
     "Trivandrum": [
-        {"Bank": "Canara Bank", "Interest Rate": "8.4%", "Tenure": "9 years"},
-        {"Bank": "Axis Bank", "Interest Rate": "8.6%", "Tenure": "10 years"},
-        {"Bank": "Kerala Gramin Bank", "Interest Rate": "8.1%", "Tenure": "8 years"},
+        {"Bank": "Canara Bank", "Interest Rate": "6.4%", "Tenure": "4 years"},
+        {"Bank": "Axis Bank", "Interest Rate": "6.6%", "Tenure": "4 years"},
+        {"Bank": "Kerala Gramin Bank", "Interest Rate": "6.1%", "Tenure": "3 years"},
     ],
 }
 
@@ -62,7 +62,7 @@ elif consumer_id:
 # -----------------------------------------------------------
 # Area Input
 # -----------------------------------------------------------
-st.divider()
+st.markdown("\n\n\n")
 st.subheader("☀️ Solar Exposure Area")
 
 area = st.number_input("Enter Unshaded Area (in sq. ft.)", min_value=0.0, step=10.0, format="%.2f")
@@ -70,14 +70,14 @@ area = st.number_input("Enter Unshaded Area (in sq. ft.)", min_value=0.0, step=1
 # -----------------------------------------------------------
 # Prediction Logic
 # -----------------------------------------------------------
-st.divider()
+st.markdown("\n")
 if st.button("🔮 Predict Solar Potential"):
     if avg_bill and area > 0:
         # Core Calculations
         plant_kw = round(area / 100, 2)
         monthly_savings = round(avg_bill * 0.8, 2)
-        subsidy = round(plant_kw * 30000, 2)
-        cost = round(plant_kw * 65000, 2)
+        subsidy = 78000 
+        cost = round(plant_kw * 125000, 2)
         net_cost = round(cost - subsidy, 2)
 
         st.success("✅ Solar Estimation Summary")
@@ -119,7 +119,7 @@ if st.button("🔮 Predict Solar Potential"):
         # Support Info
         # -----------------------------------------------------------
         st.divider()
-        st.info("📞 For support, dial **1800-123-45678** to reach your State Solar Advisor.")
+        st.info("📞 For support, dial **1800-123-45678** to reach your State Nodal Officer.")
 
     else:
         st.error("⚠️ Please enter a valid Consumer ID and Unshaded Area before predicting.")
@@ -128,4 +128,4 @@ if st.button("🔮 Predict Solar Potential"):
 # Footer
 # -----------------------------------------------------------
 st.divider()
-st.caption("🌱 Powered by the State Solar Mission Initiative.")
+st.caption("🌱 Powered by the Kerala State Solar Mission.")
